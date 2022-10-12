@@ -1,0 +1,13 @@
+# While doing post method - add validation - It has to accept only .docx or .pptx - else it should return 404 with some error
+# Use MongoDB - to store source file name (sent file name - .docx) and result file name (.pdf) or mysql
+
+# Create a crud application - While creating --> store meta data of source file name, insert time of creation
+# Write an api to search what is stored in the db and return it in json format
+# Get the json output using postman
+
+
+# config.py to store host por
+
+# Send a docx using postman with the form data 
+# Sent docx to be converted in pdf - saved in one directory using UUID (random name) 
+# UUID
