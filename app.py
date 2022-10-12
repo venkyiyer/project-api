@@ -34,7 +34,6 @@ def get_file_details():
         pdf.add_page() 
         pdf.set_font("Arial", size = 15) 
         f = open("/home/venkys/Downloads/"+ get_file_name , "r")
-        # print("This is f", f)
         db_source_file_name = file_db(source_file_name= "/home/venkys/Downloads/"+ get_file_name)
         db.session.add(db_source_file_name)
         db.session.commit()
