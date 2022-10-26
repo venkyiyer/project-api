@@ -3,6 +3,7 @@ from flask import *
 from fpdf import FPDF
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import uuid
 
 
 app = Flask(__name__)
@@ -10,6 +11,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///file.db"
 # Initializing the database
 db = SQLAlchemy(app)
+
 
 # Create a model
 class file_db(db.Model):
@@ -19,7 +21,6 @@ class file_db(db.Model):
     
     def __repr__(self) -> str:
         return f'file_db(source file name={self.source_file_name}, converted file name={self.converted_file_name}, created file date={self.create_time})'
-
 
 @app.route('/')
 def start_page():
@@ -45,8 +46,10 @@ def get_file_details():
             db_converted_file_name = file_db(converted_file_name = conv_file_name)
             db.session.add(db_converted_file_name)
             db.session.commit()
+            print()
     return make_response(f"{get_file_name} successfully converted")
-
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# Put valdations - only txt files , try exception, uuid, get a cofig.yaml, __init__ for db, oops classes 
