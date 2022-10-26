@@ -1,0 +1,7 @@
+flask_vars:
+  host: "0.0.0.0"
+  port: 5000
+extensions:
+  allowed: ["txt", "docx"]
+base_dir:
+  basedir: "/home"
