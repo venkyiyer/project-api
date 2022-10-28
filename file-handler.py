@@ -1,7 +1,8 @@
-from fpdf import FPDF
+# from fpdf import FPDF
 import yaml
-import os
-from setupDB import file_db, db
+# import os
+from src.utils.util import convert_to_pdf
+from src.db.setupDB import file_db, db
 
 
 with open("config.yml", "r") as ymlfile:
@@ -30,16 +31,17 @@ def get_file_details():
             get_file = request.files.getlist('file[ ]')
             for files in get_file:
                 get_file_name  = files.filename
-                pdf = FPDF()
-                pdf.add_page() 
-                pdf.set_font("Arial", size = 15) 
-                f = open(os.path.expanduser('~')  +'/Downloads/' + get_file_name , "r")
+                convert_to_pdf(get_file_name)
+                # # pdf = FPDF()
+                # # pdf.add_page() 
+                # # pdf.set_font("Arial", size = 15) 
+                # f = open(os.path.expanduser('~')  +'/Downloads/' + get_file_name , "r")
                 db_source_file_name = file_db(source_file_name= get_file_name)
                 db.session.add(db_source_file_name)
                 db.session.commit()
-                for x in f: 
-                    pdf.cell(200, 10, txt = x, ln = 1, align = 'C') 
-                pdf.output(os.path.expanduser('~') + '/' +get_file_name + '_converted.pdf')
+                # for x in f: 
+                    # pdf.cell(200, 10, txt = x, ln = 1, align = 'C') 
+                # pdf.output(os.path.expanduser('~') + '/' +get_file_name + '_converted.pdf')
                 conv_file_name = get_file_name + '_converted.pdf'
                 db_converted_file_name = file_db(converted_file_name = conv_file_name)
                 db.session.add(db_converted_file_name)
